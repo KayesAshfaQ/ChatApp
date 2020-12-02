@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "616931862184",
+    "firebase_url": "https://chatapp-7606a.firebaseio.com",
+    "project_id": "chatapp-7606a",
+    "storage_bucket": "chatapp-7606a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616931862184:android:963e21c233e033ef5a049d",
+        "android_client_info": {
+          "package_name": "com.impervious.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616931862184-igj8irnbo4ddr2r59840029nljk5sjnl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSSr1Wf5COqD1ovu1pv2d2_qAgxz07fxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616931862184-igj8irnbo4ddr2r59840029nljk5sjnl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
