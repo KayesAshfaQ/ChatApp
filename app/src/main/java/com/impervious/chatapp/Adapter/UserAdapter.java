@@ -51,7 +51,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
 
-
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
 
@@ -61,28 +60,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.username.setText(users.getName());
 
         //set img
-        if (users.getImgUrl().equals("default")){
+        if (users.getImgUrl().equals("default")) {
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        }else {
+        } else {
             Glide.with(context).load(users.getImgUrl()).into(holder.profile_image);
         }
 
         //last_msg
-        if (isChat){
+        if (isChat) {
             lastMessage(users.getUid(), holder.last_msg);
-        }else {
+        } else {
             holder.last_msg.setVisibility(View.GONE);
         }
 
         //status
         if(isChat){
-            if (users.getStatus().equals("online")){
-                holder.img_on.setVisibility(View.VISIBLE);
-                holder.img_off.setVisibility(View.GONE);
-            }else {
-                holder.img_off.setVisibility(View.VISIBLE);
-                holder.img_on.setVisibility(View.GONE);
-            }
+        if (users.getStatus().equals("online")) {
+            holder.img_on.setVisibility(View.VISIBLE);
+            holder.img_off.setVisibility(View.GONE);
+        } else {
+            holder.img_off.setVisibility(View.VISIBLE);
+            holder.img_on.setVisibility(View.GONE);
+        }
         }else {
             holder.img_on.setVisibility(View.GONE);
             holder.img_off.setVisibility(View.GONE);
@@ -108,7 +107,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
 
     //lastMessage
-    private void lastMessage(String userId, MaterialTextView last_msg){
+    private void lastMessage(String userId, MaterialTextView last_msg) {
 
         theLastMessage = "default";
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -117,7 +116,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Chats chats = dataSnapshot.getValue(Chats.class);
                     if (chats.getReceiver().equals(firebaseUser.getUid()) && chats.getSender().equals(userId) ||
                             chats.getReceiver().equals(userId) && chats.getSender().equals(firebaseUser.getUid())) {
@@ -127,7 +126,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     }
                 }
 
-                switch (theLastMessage){
+                switch (theLastMessage) {
 
                     case "default":
                         last_msg.setText("No message");
@@ -153,7 +152,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
 
     //ViewHolder as Inner Class
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public MaterialTextView username;
         public CircleImageView profile_image;

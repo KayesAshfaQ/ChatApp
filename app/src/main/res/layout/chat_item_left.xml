@@ -28,7 +28,7 @@
         android:id="@+id/txt_seen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="seem"
+        android:text="seen"
         android:visibility="gone" />
 
 
