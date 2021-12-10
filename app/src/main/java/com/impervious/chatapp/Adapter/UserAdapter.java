@@ -74,15 +74,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         }
 
         //status
-        if(isChat){
-        if (users.getStatus().equals("online")) {
-            holder.img_on.setVisibility(View.VISIBLE);
-            holder.img_off.setVisibility(View.GONE);
+        if (isChat) {
+            if (users.getStatus().equals("online")) {
+                holder.img_on.setVisibility(View.VISIBLE);
+                holder.img_off.setVisibility(View.GONE);
+            } else {
+                holder.img_off.setVisibility(View.VISIBLE);
+                holder.img_on.setVisibility(View.GONE);
+            }
         } else {
-            holder.img_off.setVisibility(View.VISIBLE);
-            holder.img_on.setVisibility(View.GONE);
-        }
-        }else {
             holder.img_on.setVisibility(View.GONE);
             holder.img_off.setVisibility(View.GONE);
         }
@@ -116,13 +116,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Chats chats = dataSnapshot.getValue(Chats.class);
-                    if (chats.getReceiver().equals(firebaseUser.getUid()) && chats.getSender().equals(userId) ||
-                            chats.getReceiver().equals(userId) && chats.getSender().equals(firebaseUser.getUid())) {
+                if (firebaseUser != null) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Chats chats = dataSnapshot.getValue(Chats.class);
+                        if (chats != null) {
+                            if (chats.getReceiver().equals(firebaseUser.getUid()) && chats.getSender().equals(userId) ||
+                                    chats.getReceiver().equals(userId) && chats.getSender().equals(firebaseUser.getUid())) {
 
-                        theLastMessage = chats.getMessage();
+                                theLastMessage = chats.getMessage();
 
+                            }
+                        }
                     }
                 }
 
